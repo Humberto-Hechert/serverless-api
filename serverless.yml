@@ -1,17 +1,23 @@
-service: serverless-api
+service: backend-agenda
 
 provider:
   name: aws
-  runtime: nodejs18.x
-  region: us-east-1
+  runtime: nodejs14.x
 
 functions:
-  hello:
-    handler: src/handler.hello
+  getAgendas:
+    handler: src/agenda/controller.getAgendas
     events:
       - http:
-          path: hello
+          path: agendas
           method: get
+
+  createAgendamento:
+    handler: src/agendamento/controller.createAgendamento
+    events:
+      - http:
+          path: agendamento
+          method: post
 
 plugins:
   - serverless-offline
